@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/crown.svg.svg";
 // ReactComponent is a special syntax in React for importing SVG. Next lesson will explain how this works
 import "./header.styles.scss";
@@ -32,4 +33,8 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+// mapStateToProps naming can be anything but mapStateToProps is standard with redux codebases
+export default connect(mapStateToProps)(Header);
