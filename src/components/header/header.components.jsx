@@ -10,7 +10,6 @@ import { auth } from "../../API/firebase/firebase.utils";
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
-    {console.log("props on header", currentUser)}
     <Link to="/" className="logo-contain">
       <Logo className="logo" />
     </Link>
