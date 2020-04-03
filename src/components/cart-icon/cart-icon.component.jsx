@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import { selectCartItemsCount } from "../../redux/cart/cart.selector";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
@@ -18,13 +19,13 @@ const mapDispatchToProps = dispatch => ({
   toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = createStructuredSelector({
   // itemCount: cartItems.reduce(
   //   (accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity,
   //   0
   // )
   // we replace with selectorCart because we create custom for this
-  itemCount: selectCartItemsCount(state)
+  itemCount: selectCartItemsCount
 });
 
 /** cartItems.reduce(())   is a native array method in JavaScript */
