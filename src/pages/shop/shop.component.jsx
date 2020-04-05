@@ -1,7 +1,20 @@
 import React from "react";
-import CollectionPreview from "../../components/collection-preview/collection-preview.component";
-import SHOP_DATA from "../../API/CustomJson/shop.data";
-class ShopPage extends React.Component {
+
+import CollectionsOverview from "../../components/collections-overview/collections-overview.component";
+const ShopPage = () => (
+  <div>
+    <CollectionsOverview />
+  </div>
+);
+
+export default ShopPage;
+
+{
+  /** old method using setstate
+   * 
+   * 
+   * import SHOP_DATA
+    class ShopPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +31,5 @@ class ShopPage extends React.Component {
       </div>
     );
   }
+} */
 }
-
-export default ShopPage;
