@@ -6,14 +6,15 @@ import { addItem } from "../../redux/cart/cart.actions";
 import CustomButton from "../custom-button/custom-button.component";
 import "./collection-item.styles.scss";
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item, addItem, match }) => {
+  console.log("props on ColectionItem", match);
   const { name, price, imageUrl } = item;
   return (
     <div className="collection-item">
       <div
         className="image"
         style={{
-          backgroundImage: `url(${imageUrl})`
+          backgroundImage: `url(${imageUrl})`,
         }}
       />
       <div className="collection-footer">
@@ -27,8 +28,8 @@ const CollectionItem = ({ item, addItem }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
 });
 
 /** About Dispatch
