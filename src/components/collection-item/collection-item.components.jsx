@@ -7,7 +7,6 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item, addItem, match }) => {
-  console.log("props on ColectionItem", match);
   const { name, price, imageUrl } = item;
   return (
     <div className="collection-item">
