@@ -51,6 +51,7 @@ class App extends React.Component {
       <div>
         {/* <Header currentUser={this.state.currentUser} /> */}
         <Header /> {/** cause we used redux to implement currentUser state */}
+        {console.log("current user is", this.props.currentUser)}
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
