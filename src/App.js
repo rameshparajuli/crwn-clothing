@@ -10,10 +10,14 @@ import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.components";
 import CheckoutPage from "./pages/checkout/checkout.component";
 
-import { auth, createUserProfileDocument } from "./API/firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments,
+} from "./API/firebase/firebase.utils";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import { selectCurrentUser } from "./redux/user/user.selector";
-
+import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 class App extends React.Component {
   // constructor() {
   //   super();
@@ -27,7 +31,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser, collectionArray } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -40,6 +44,10 @@ class App extends React.Component {
       } else {
         setCurrentUser(userAuth);
       }
+      addCollectionAndDocuments(
+        "collections",
+        collectionArray.map(({ title, items }) => ({ title, items }))
+      );
     });
   }
 
@@ -51,7 +59,6 @@ class App extends React.Component {
       <div>
         {/* <Header currentUser={this.state.currentUser} /> */}
         <Header /> {/** cause we used redux to implement currentUser state */}
-        {console.log("current user is", this.props.currentUser)}
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
@@ -70,6 +77,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collectionArray: selectCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
