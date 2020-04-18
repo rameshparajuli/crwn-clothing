@@ -2,13 +2,16 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./App.css";
 import { createStructuredSelector } from "reselect";
 import { setCurrentUser } from "./redux/user/user.action";
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.components";
 import CheckoutPage from "./pages/checkout/checkout.component";
+
+// stylesheet global
+
+import { GlobalStyle } from "./global.styles";
 
 import {
   auth,
@@ -19,15 +22,6 @@ import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import { selectCurrentUser } from "./redux/user/user.selector";
 import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 class App extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     currentUser: null
-  //   };
-  // }
-  // we don't need this cause we implement redux here
-  // And we use this.props.propsNameFromRedux everywhere on this.setstate({})
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
@@ -57,6 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         {/* <Header currentUser={this.state.currentUser} /> */}
         <Header /> {/** cause we used redux to implement currentUser state */}
         <Switch>
