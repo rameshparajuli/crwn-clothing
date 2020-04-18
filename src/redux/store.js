@@ -1,30 +1,18 @@
 import { createStore, applyMiddleware } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore } from "redux-persist";
+import logger from "redux-logger";
 import thunk from "redux-thunk";
-import logger from "redux-logger"; // logger for middleware
-import storage from "redux-persist/lib/storage";
 
 import rootReducer from "./root-reducer";
 
-const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["cart"],
-};
-
-const middlewares = [];
+const middlewares = [thunk];
 
 if (process.env.NODE_ENV === "development") {
   middlewares.push(logger);
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
-const store = createStore(
-  persistedReducer,
-  applyMiddleware(thunk, ...middlewares)
-);
+export const persistor = persistStore(store);
 
-const persistor = persistStore(store);
-
-export { store, persistor };
+export default { store, persistStore };

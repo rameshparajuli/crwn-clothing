@@ -14,9 +14,7 @@ import {
   CheckoutPageContainer,
   HeaderBlockContainer,
   TotalContainer,
-  WarningContainer,
 } from "./checkout.styles";
-import "./checkout.styles.scss";
 
 const CheckoutPage = ({ cartItems, total }) => (
   <CheckoutPageContainer>
