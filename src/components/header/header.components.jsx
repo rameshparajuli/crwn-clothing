@@ -17,7 +17,6 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { ReactComponent as Logo } from "../../assets/crown.svg.svg";
 // ReactComponent is a special syntax in React for importing SVG. Next lesson will explain how this works
 // import "./header.styles.scss";
-import { auth } from "../../API/firebase/firebase.utils";
 
 const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
